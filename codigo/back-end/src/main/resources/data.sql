@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS EMPRESA_ENERGIA;
+CREATE TABLE EMPRESA_ENERGIA (
+    id_empresa BIGINT PRIMARY KEY AUTO_INCREMENT,
+    quantidade_disponivel INT NOT NULL
+);
+
+INSERT INTO EMPRESA_ENERGIA (quantidade_disponivel) VALUES (1000);
+
+DROP TABLE IF EXISTS LOTE_ENERGIA;
+CREATE TABLE LOTE_ENERGIA (
+    id_lote_energia BIGINT PRIMARY KEY AUTO_INCREMENT,
+    tamanho INT NOT NULL,
+    valor DOUBLE NOT NULL,
+    empresa_id BIGINT,
+    FOREIGN KEY (empresa_id) REFERENCES EMPRESA_ENERGIA(id_empresa)
+);
+
+INSERT INTO LOTE_ENERGIA (tamanho, valor, empresa_id) VALUES (10, 50.00, 1),(20, 80.00, 1),(30, 120.00, 1);
+
+DROP TABLE IF EXISTS INTERESSADA;
+CREATE TABLE INTERESSADA (
+    id_interessada BIGINT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    quantidade_desejada INT NOT NULL
+);
+INSERT INTO INTERESSADA (nome, quantidade_desejada) VALUES ('Empresa A', 15),('Empresa B', 25),('Empresa C', 35);
