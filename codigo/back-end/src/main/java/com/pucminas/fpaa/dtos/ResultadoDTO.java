@@ -1,5 +1,6 @@
 package com.pucminas.fpaa.dtos;
 
+import com.pucminas.fpaa.entity.EmpresaInteressada;
 import com.pucminas.fpaa.entity.LoteEnergia;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class ResultadoDTO {
     private long startTime;
     private AlgoritmoEnum algoritmoUtilizado;
     private double melhorLucro;
-    private List<LoteEnergia> melhorSelecao;
+    private List<EmpresaInteressada> melhorSelecao;
 
     public ResultadoDTO() {
         this.duracao = 0;

@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface LoteEnergiaRepository extends JpaRepository<LoteEnergia,Long> {
-    @Query("SELECT l FROM LoteEnergia l WHERE l.empresa.idEmpresa = :empresaId")
-    List<LoteEnergia> findByEmpresaId(@Param("empresaId") Long empresaId);
+//    @Query("SELECT l FROM LoteEnergia l WHERE l.empresa.id = :empresaId")
+//    List<LoteEnergia> findByEmpresaId(@Param("empresaId") Long empresaId);
 }

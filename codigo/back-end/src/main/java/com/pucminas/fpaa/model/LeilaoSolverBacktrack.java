@@ -1,12 +1,15 @@
 package com.pucminas.fpaa.model;
 
 import com.pucminas.fpaa.dtos.ResultadoDTO;
+import com.pucminas.fpaa.entity.EmpresaInteressada;
+import com.pucminas.fpaa.entity.EmpresaVendedora;
 import com.pucminas.fpaa.entity.LoteEnergia;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
+import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
+import com.pucminas.fpaa.repositories.EmpresaVendedoraRepository;
 import com.pucminas.fpaa.repositories.LoteEnergiaRepository;
 import com.pucminas.fpaa.ìnterfaces.LeilaoSolverBacktrackI;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +17,16 @@ import java.util.List;
 public class LeilaoSolverBacktrack implements LeilaoSolverBacktrackI {
 
     private final LoteEnergiaRepository loteEnergiaRepository;
-    private double melhorLucro;
-    private List<LoteEnergia> melhorSelecao;
+    private final EmpresaVendedoraRepository empresaVendedoraRepository;
 
-    public LeilaoSolverBacktrack(LoteEnergiaRepository loteEnergiaRepository) {
+    private final EmpresaInteressadaRepository empresaInteressadaRepository;
+    private double melhorLucro;
+    private List<EmpresaInteressada> melhorSelecao;
+
+    public LeilaoSolverBacktrack(LoteEnergiaRepository loteEnergiaRepository, EmpresaVendedoraRepository empresaVendedoraRepository, EmpresaInteressadaRepository empresaInteressadaRepository) {
         this.loteEnergiaRepository = loteEnergiaRepository;
+        this.empresaVendedoraRepository = empresaVendedoraRepository;
+        this.empresaInteressadaRepository = empresaInteressadaRepository;
         this.melhorLucro = 0;
         this.melhorSelecao = new ArrayList<>();
     }
@@ -26,20 +34,47 @@ public class LeilaoSolverBacktrack implements LeilaoSolverBacktrackI {
     @Override
     public ResultadoDTO resolverLeilao(Long idEmpresa) {
         ResultadoDTO resultadoDTO = new ResultadoDTO();
-        List<LoteEnergia> lotesDisponiveis = loteEnergiaRepository.findByEmpresaId(idEmpresa);
-        List<LoteEnergia> selecaoAtual = new ArrayList<>();
-        double lucroAtual = 0;
-        resultadoDTO.iniciarContagem();
-            backtrack(0, lotesDisponiveis, selecaoAtual, lucroAtual);
-            resultadoDTO.setMelhorSelecao(melhorSelecao);
-            resultadoDTO.setMelhorLucro(melhorLucro);
-            resultadoDTO.setAlgoritmoUtilizado(AlgoritmoEnum.BACKTRAKING);
-        resultadoDTO.finalizarContagem();
+        EmpresaVendedora empresaVendedora = empresaVendedoraRepository.findById(idEmpresa).orElse(null);
+
+        if (empresaVendedora != null) {
+            List<LoteEnergia> lotesDisponiveis = empresaVendedora.getLotes().stream()
+                    .filter(lote -> lote.getEmpresaCompradora() == null)
+                    .toList();
+
+            List<EmpresaInteressada> empresasInteressadas = new ArrayList<>();
+
+            for (LoteEnergia lote : lotesDisponiveis) {
+                List<EmpresaInteressada> interessadas = empresaInteressadaRepository.findByLoteInteressadoId(lote.getId());
+                empresasInteressadas.addAll(interessadas);
+            }
+
+            List<EmpresaInteressada> selecaoAtual = new ArrayList<>();
+            double lucroAtual = 0;
+
+            resultadoDTO.iniciarContagem();
+                backtrack(0, lotesDisponiveis, empresasInteressadas, selecaoAtual, lucroAtual);
+                resultadoDTO.setMelhorSelecao(melhorSelecao);
+                resultadoDTO.setMelhorLucro(melhorLucro);
+                resultadoDTO.setAlgoritmoUtilizado(AlgoritmoEnum.BACKTRAKING);
+            resultadoDTO.finalizarContagem();
+
+            definirCompradores(lotesDisponiveis);
+        }
+
         return resultadoDTO;
     }
 
-    private void backtrack(int indice, List<LoteEnergia> lotesDisponiveis, List<LoteEnergia> selecaoAtual, double lucroAtual) {
-        if (indice == lotesDisponiveis.size()) {
+    private void definirCompradores(List<LoteEnergia> lotesDisponiveis) {
+        for (LoteEnergia lote : lotesDisponiveis) {
+            melhorSelecao.stream()
+                    .filter(empresa -> empresa.getLoteInteressado().getId().equals(lote.getId()))
+                    .findFirst()
+                    .ifPresent(lote::setEmpresaCompradora);
+        }
+    }
+
+    private void backtrack(int indice, List<LoteEnergia> lotesDisponiveis, List<EmpresaInteressada> empresasInteressadas, List<EmpresaInteressada> selecaoAtual, double lucroAtual) {
+        if (indice == empresasInteressadas.size()) {
             if (lucroAtual > melhorLucro) {
                 melhorLucro = lucroAtual;
                 melhorSelecao = new ArrayList<>(selecaoAtual);
@@ -47,14 +82,25 @@ public class LeilaoSolverBacktrack implements LeilaoSolverBacktrackI {
             return;
         }
 
-        LoteEnergia lote = lotesDisponiveis.get(indice);
-        // Verifica se o lote está disponível para seleção
-            for (int i = 0; i <= lote.getValor(); i++) {
-                if (lote.getTamanho() * i <= lote.getValor()) {
-                    selecaoAtual.add(new LoteEnergia(lote.getIdLoteEnergia(), lote.getTamanho(), lote.getValor() * i, lote.getEmpresa()));
-                    backtrack(indice + 1, lotesDisponiveis, selecaoAtual, lucroAtual + lote.getValor() * i);
-                    selecaoAtual.remove(selecaoAtual.size() - 1);
-                }
+        EmpresaInteressada empresa = empresasInteressadas.get(indice);
+        // Verifica se a empresa está interessada
+        if (empresa != null) {
+            if (lotesDisponiveis.contains(empresa.getLoteInteressado()) && !loteJaSelecionado(selecaoAtual, empresa.getLoteInteressado())) {
+                selecaoAtual.add(empresa);
+                backtrack(indice + 1, lotesDisponiveis, empresasInteressadas, selecaoAtual, lucroAtual + empresa.getLance());
+                selecaoAtual.remove(selecaoAtual.size() - 1);
+
+            }else System.out.println(empresa.getLoteInteressado().getId()+" - Lote já comprado!");
+        }
+        // Continua para a próxima empresa
+        backtrack(indice + 1, lotesDisponiveis, empresasInteressadas, selecaoAtual, lucroAtual);
+    }
+    private boolean loteJaSelecionado(List<EmpresaInteressada> selecaoAtual, LoteEnergia lote) {
+        for (EmpresaInteressada empresa : selecaoAtual) {
+            if (empresa.getLoteInteressado().getId().equals(lote.getId())) {
+                return true;
             }
+        }
+        return false;
     }
 }
