@@ -43,10 +43,7 @@ public class LeilaoSolverBacktrack implements LeilaoSolverBacktrackI {
 
             List<EmpresaInteressada> empresasInteressadas = new ArrayList<>();
 
-            for (LoteEnergia lote : lotesDisponiveis) {
-                List<EmpresaInteressada> interessadas = empresaInteressadaRepository.findByLoteInteressadoId(lote.getId());
-                empresasInteressadas.addAll(interessadas);
-            }
+            empresasInteressadas.addAll(empresaInteressadaRepository.findAllByLoteInteressadoEmpresaCompradoraIsNullAndEmpresaVendedoraId(idEmpresa));
 
             List<EmpresaInteressada> selecaoAtual = new ArrayList<>();
             double lucroAtual = 0;
@@ -83,16 +80,16 @@ public class LeilaoSolverBacktrack implements LeilaoSolverBacktrackI {
         }
 
         EmpresaInteressada empresa = empresasInteressadas.get(indice);
-        // Verifica se a empresa está interessada
+
         if (empresa != null) {
+            //verifica se o lote interessado esta disponivel e se ele ja não foi selacionado posteriormente
             if (lotesDisponiveis.contains(empresa.getLoteInteressado()) && !loteJaSelecionado(selecaoAtual, empresa.getLoteInteressado())) {
                 selecaoAtual.add(empresa);
                 backtrack(indice + 1, lotesDisponiveis, empresasInteressadas, selecaoAtual, lucroAtual + empresa.getLance());
                 selecaoAtual.remove(selecaoAtual.size() - 1);
 
-            }else System.out.println(empresa.getLoteInteressado().getId()+" - Lote já comprado!");
+            }
         }
-        // Continua para a próxima empresa
         backtrack(indice + 1, lotesDisponiveis, empresasInteressadas, selecaoAtual, lucroAtual);
     }
     private boolean loteJaSelecionado(List<EmpresaInteressada> selecaoAtual, LoteEnergia lote) {
