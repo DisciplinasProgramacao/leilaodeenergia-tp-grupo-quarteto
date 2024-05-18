@@ -1,6 +1,5 @@
 package com.pucminas.fpaa.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,11 +18,9 @@ public class EmpresaVendedora {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
-    private int quantidadeDisponivel;
 
-    @OneToMany
-    @JoinColumn(name = "empresa_vendedora_id", referencedColumnName = "id")
-    @JsonIgnore
-    private List<LoteEnergia> lotes;
+    private String nome;
+    private int quant_disponivel;
+    @Column(nullable = false)
+    private int quant_vendida;
 }

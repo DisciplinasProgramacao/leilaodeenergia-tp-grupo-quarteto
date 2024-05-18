@@ -1,6 +1,5 @@
 package com.pucminas.fpaa.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,12 +16,12 @@ public class EmpresaInteressada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
-    private Double lance; // Valor do lance para o lote de energia
+    private int quantRequerida;
+    private Double valor; // Valor do lance para o lote de energia
 
-    @OneToOne
-    @JoinColumn(name = "lote_energia_id", referencedColumnName = "id", nullable = false)
-    @JsonIgnoreProperties("empresaCompradora")
-    private LoteEnergia loteInteressado;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vendedora_id")
+    private EmpresaVendedora empresaVendedora;
 }

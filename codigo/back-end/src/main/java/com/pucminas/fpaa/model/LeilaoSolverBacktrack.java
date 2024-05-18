@@ -1,9 +1,9 @@
+/*
 package com.pucminas.fpaa.model;
 
 import com.pucminas.fpaa.dtos.ResultadoDTO;
 import com.pucminas.fpaa.entity.EmpresaInteressada;
 import com.pucminas.fpaa.entity.EmpresaVendedora;
-import com.pucminas.fpaa.entity.LoteEnergia;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
 import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
 import com.pucminas.fpaa.repositories.EmpresaVendedoraRepository;
@@ -101,3 +101,4 @@ public class LeilaoSolverBacktrack implements LeilaoSolverBacktrackI {
         return false;
     }
 }
+*/

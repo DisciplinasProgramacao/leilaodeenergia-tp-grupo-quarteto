@@ -1,7 +1,6 @@
 package com.pucminas.fpaa.dtos;
 
 import com.pucminas.fpaa.entity.EmpresaInteressada;
-import com.pucminas.fpaa.entity.LoteEnergia;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
 import lombok.Getter;
 import lombok.Setter;
