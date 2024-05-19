@@ -18,6 +18,7 @@ public class ResultadoDTO {
     private AlgoritmoEnum algoritmoUtilizado;
     private double melhorLucro;
     private List<EmpresaInteressada> melhorSelecao;
+    private int quantidadeVendida;
 
     public ResultadoDTO() {
         this.duracao = 0;
@@ -26,6 +27,7 @@ public class ResultadoDTO {
         this.algoritmoUtilizado = null;
         this.melhorLucro = 0.0;
         this.melhorSelecao = new ArrayList<>();
+        this.quantidadeVendida = 0;
     }
 
     public void iniciarContagem() {

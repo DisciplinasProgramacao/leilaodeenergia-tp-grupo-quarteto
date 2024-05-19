@@ -31,7 +31,7 @@ public class LeilaoSolverGreedy implements LeilaoSolverGreedyI {
         EmpresaVendedora empresaVendedora = empresaVendedoraRepository.findById(idEmpresa).orElse(null);
 
         if (empresaVendedora != null) {
-            List<EmpresaInteressada> empresasInteressadas = empresaInteressadaRepository.findAll();
+            List<EmpresaInteressada> empresasInteressadas = empresaInteressadaRepository.findByEmpresaVendedoraId(idEmpresa);
 
 
             empresasInteressadas.sort(Comparator.comparingDouble(EmpresaInteressada::getQuantRequerida).reversed());
@@ -39,7 +39,7 @@ public class LeilaoSolverGreedy implements LeilaoSolverGreedyI {
             double lucroTotal = 0;
             List<EmpresaInteressada> melhorSelecao = new ArrayList<>();
             int quantidadeVendidaTotal = 0;
-
+            resultadoDTO.iniciarContagem();
             for (EmpresaInteressada empresaInteressada : empresasInteressadas) {
                 int quantRequerida = empresaInteressada.getQuantRequerida();
                 double valorLance = empresaInteressada.getValor();
@@ -66,12 +66,13 @@ public class LeilaoSolverGreedy implements LeilaoSolverGreedyI {
             for (EmpresaInteressada melhores: melhorSelecao){
                 melhores.setEmpresaVendedora(empresaVendedora);
             }
-            empresaVendedora.setQuant_vendida(quantidadeVendidaTotal);
-            empresaVendedoraRepository.save(empresaVendedora);
-
+            resultadoDTO.finalizarContagem();
+            resultadoDTO.setQuantidadeVendida(quantidadeVendidaTotal);
+            //empresaVendedoraRepository.save(empresaVendedora);
             resultadoDTO.setMelhorSelecao(melhorSelecao);
             resultadoDTO.setMelhorLucro(lucroTotal);
             resultadoDTO.setAlgoritmoUtilizado(AlgoritmoEnum.GREEDY);
+
         }
 
         return resultadoDTO;
