@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Getter
-@Setter
 public class ResultadoDTO {
     private long duracao;
     private boolean isRunning;
@@ -59,6 +57,62 @@ public class ResultadoDTO {
     // Método para obter a duração formatada em segundos
     public String getDuracaoFormatadaSegundos() {
         return String.format("%d s", TimeUnit.NANOSECONDS.toSeconds(duracao));
+    }
+
+    public long getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(long duracao) {
+        this.duracao = duracao;
+    }
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setRunning(boolean running) {
+        isRunning = running;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public AlgoritmoEnum getAlgoritmoUtilizado() {
+        return algoritmoUtilizado;
+    }
+
+    public void setAlgoritmoUtilizado(AlgoritmoEnum algoritmoUtilizado) {
+        this.algoritmoUtilizado = algoritmoUtilizado;
+    }
+
+    public double getMelhorLucro() {
+        return melhorLucro;
+    }
+
+    public void setMelhorLucro(double melhorLucro) {
+        this.melhorLucro = melhorLucro;
+    }
+
+    public List<EmpresaInteressada> getMelhorSelecao() {
+        return melhorSelecao;
+    }
+
+    public void setMelhorSelecao(List<EmpresaInteressada> melhorSelecao) {
+        this.melhorSelecao = melhorSelecao;
+    }
+
+    public int getQuantidadeVendida() {
+        return quantidadeVendida;
+    }
+
+    public void setQuantidadeVendida(int quantidadeVendida) {
+        this.quantidadeVendida = quantidadeVendida;
     }
 
 }
