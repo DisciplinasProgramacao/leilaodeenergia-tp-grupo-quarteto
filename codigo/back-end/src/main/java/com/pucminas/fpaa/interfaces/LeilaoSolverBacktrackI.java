@@ -1,4 +1,4 @@
-package com.pucminas.fpaa.ìnterfaces;
+package com.pucminas.fpaa.interfaces;
 
 import com.pucminas.fpaa.dtos.ResultadoDTO;
 
