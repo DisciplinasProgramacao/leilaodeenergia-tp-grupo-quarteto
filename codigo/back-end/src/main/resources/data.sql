@@ -9,7 +9,8 @@ CREATE TABLE EMPRESA_VENDEDORA
 
 INSERT INTO EMPRESA_VENDEDORA (nome, quant_disponivel, quant_vendida)
 VALUES ('Empresa P', 4000 , 0),
-       ('Empresa O', 4000 , 0);
+       ('Empresa O', 4000 , 0),
+       ('Empresa d', 1000 , 0);
 
 DROP TABLE IF EXISTS EMPRESA_INTERESSADA;
 CREATE TABLE EMPRESA_INTERESSADA
@@ -43,3 +44,10 @@ VALUES ('Empresa A', 9000, 10,2),
        ('Empresa F', 800, 34,2),
        ('Empresa G', 50, 8,2),
        ('Empresa H', 100, 11,2);
+INSERT INTO EMPRESA_INTERESSADA (nome, quant_requerida, valor, vendedora_id)
+VALUES ('Empresa A', 500, 500,3),
+       ('Empresa B', 500, 510,3),
+       ('Empresa C', 400, 520,3),
+       ('Empresa D', 300, 400,3),
+       ('Empresa E', 200, 220,3),
+       ('Empresa F', 900, 1110,3);

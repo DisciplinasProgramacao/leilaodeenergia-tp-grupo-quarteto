@@ -6,13 +6,11 @@ import com.pucminas.fpaa.entity.EmpresaVendedora;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
 import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
 import com.pucminas.fpaa.repositories.EmpresaVendedoraRepository;
-import com.pucminas.fpaa.ìnterfaces.LeilaoSolverGreedyI;
+import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyI;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class LeilaoSolverGreedy implements LeilaoSolverGreedyI {

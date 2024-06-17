@@ -6,7 +6,7 @@ import com.pucminas.fpaa.entity.EmpresaVendedora;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
 import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
 import com.pucminas.fpaa.repositories.EmpresaVendedoraRepository;
-import com.pucminas.fpaa.ìnterfaces.LeilaoSolverBacktrackI;
+import com.pucminas.fpaa.interfaces.LeilaoSolverBacktrackI;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
