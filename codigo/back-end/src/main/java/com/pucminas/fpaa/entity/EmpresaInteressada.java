@@ -22,4 +22,12 @@ public class EmpresaInteressada {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "vendedora_id")
     private EmpresaVendedora empresaVendedora;
+
+    @Override
+    public String toString() {
+        return "EmpresaInteressada{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
 }

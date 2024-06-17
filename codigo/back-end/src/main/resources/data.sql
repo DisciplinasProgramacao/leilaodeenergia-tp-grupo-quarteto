@@ -37,7 +37,7 @@ VALUES ('Empresa A', 1000, 20,1),
 INSERT INTO EMPRESA_INTERESSADA (nome, quant_requerida, valor, vendedora_id)
 VALUES ('Empresa A', 9000, 10,2),
        ('Empresa B', 500, 50,2),
-       ('Empresa C', 9000, 55,2),
+       ('Empresa C', 1000, 55,2),
        ('Empresa D', 20, 20,2),
        ('Empresa E', 1, 10,2),
        ('Empresa F', 800, 34,2),
