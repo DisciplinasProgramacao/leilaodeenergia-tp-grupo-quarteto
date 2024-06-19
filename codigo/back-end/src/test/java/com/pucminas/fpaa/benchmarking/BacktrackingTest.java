@@ -35,19 +35,18 @@ public class BacktrackingTest {
     void testBacktrackingPerformance() {
         int tamanhoAtual = 10;
         boolean limiteAlcancado = false;
-
+        List<ResultadoDTO> resultadoFinal = new ArrayList<>();
         while (!limiteAlcancado) {
             List<Double> temposExecucao = new ArrayList<>();
 
             for (int i = 0; i < 10; i++) {
                 limparEmpresasInteressadas();
-                if (i == 0) adicionarEmpresasInteressadas(0);
-                else adicionarEmpresasInteressadas(tamanhoAtual);
+                adicionarEmpresasInteressadas(tamanhoAtual);
 
                 ResultadoDTO resultado = executarTeste(3L);
                 long duracaoSegundos = TimeUnit.NANOSECONDS.toSeconds(resultado.getDuracao());
                 temposExecucao.add((double) duracaoSegundos);
-
+                resultadoFinal.add(resultado);
                 System.out.println("Execução " + (i + 1) + " com tamanho " + tamanhoAtual + ": " + duracaoSegundos + " segundos");
             }
 
@@ -57,8 +56,10 @@ public class BacktrackingTest {
             if (mediaDuracao > TEMPO_LIMITE_SEGUNDOS) {
                 System.out.println("Tempo limite estourado na média com tamanho: " + tamanhoAtual);
                 limiteAlcancado = true;
+                System.out.println(resultadoFinal);
             } else {
                 tamanhoAtual++;
+                resultadoFinal.clear();
             }
         }
     }
