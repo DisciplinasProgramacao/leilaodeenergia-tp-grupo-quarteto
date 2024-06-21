@@ -4,11 +4,12 @@ import com.pucminas.fpaa.entity.EmpresaInteressada;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+@ToString
 public class ResultadoDTO {
     private long duracao;
     private boolean isRunning;

@@ -6,6 +6,7 @@
 
 O método de Backtracking desenvolvido para abordar o desafio da seleção de empresas interessadas utiliza estratégias de otimização baseadas em técnicas de poda, aprimorando a abordagem de força bruta.
 No caso do problema apresentado, a solução implementada roda o algoritmo de Backtracking para todas as combinações possíveis, buscando criar a melhor seleção de empresas. Destaca-se a importância crucial da técnica de poda no aprimoramento do processo de busca. Essa abordagem efetiva elimina caminhos desnecessários na árvore de decisão, resultando em uma significativa melhoria na eficiência do algoritmo - que é o que o diferencia de algoritmos força-bruta. Neste contexto, o nosso backtracking emprega a técnica de poda ao verificar se a inclusão de uma nova empresa não ultrapassa a quantidade disponível, e se o lucro acumulado pode ser potencialmente maior que o melhor lucro encontrado até então. Essa técnica de poda ajuda a reduzir o número de combinações a serem exploradas, aumentando a eficiência do algoritmo.
+
 **Decisões Tomadas:**
 
 1. **Escolha do Algoritmo:**
@@ -43,31 +44,240 @@ No caso do problema apresentado, a solução implementada roda o algoritmo de Ba
 
 Para analisar a performance do algoritmo de backtracking, foram realizados testes com diferentes tamanhos de entrada, variando de 10 a 77 empresas interessadas. Abaixo está uma tabela que resume os tempos de execução e a média de execução para cada tamanho:
 
-| Tamanho | Execução 1 | Execução 2 | Execução 3 | Execução 4 | Execução 5 | Execução 6 | Execução 7 | Execução 8 | Execução 9 | Execução 10 | Média   |
-|---------|------------|------------|------------|------------|------------|------------|------------|------------|------------|-------------|---------|
-| 10      | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0.0 s   |
-| 56      | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0.0 s   |
-| 57      | 0 s        | 0 s        | 1 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0.1 s   |
-| 58      | 0 s        | 0 s        | 6 s        | 1 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0.7 s   |
-| 59      | 0 s        | 2 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 12 s       | 0 s         | 1.4 s   |
-| 60      | 0 s        | 0 s        | 5 s        | 0 s        | 0 s        | 1 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0.6 s   |
-| 61      | 0 s        | 0 s        | 0 s        | 0 s        | 1 s        | 1 s        | 0 s        | 1 s        | 0 s        | 2 s         | 0.5 s   |
-| 62      | 0 s        | 1 s        | 1 s        | 0 s        | 0 s        | 1 s        | 0 s        | 0 s        | 3 s        | 1 s         | 0.7 s   |
-| 63      | 0 s        | 4 s        | 4 s        | 0 s        | 0 s        | 65 s       | 5 s        | 1 s        | 0 s        | 0 s         | 7.9 s   |
-| 64      | 0 s        | 0 s        | 0 s        | 11 s       | 0 s        | 2 s        | 3 s        | 0 s        | 1 s        | 1 s         | 1.8 s   |
-| 65      | 0 s        | 32 s       | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 3.2 s   |
-| 66      | 0 s        | 0 s        | 0 s        | 0 s        | 23 s       | 0 s        | 8 s        | 2 s        | 1 s        | 4 s         | 3.8 s   |
-| 67      | 0 s        | 1 s        | 0 s        | 13 s       | 4 s        | 4 s        | 8 s        | 0 s        | 2 s        | 3 s         | 3.5 s   |
-| 68      | 0 s        | 0 s        | 1 s        | 6 s        | 4 s        | 0 s        | 3 s        | 0 s        | 2 s        | 0 s         | 1.6 s   |
-| 69      | 0 s        | 0 s        | 0 s        | 2 s        | 5 s        | 33 s       | 1 s        | 11 s       | 1 s        | 4 s         | 5.7 s   |
-| 70      | 0 s        | 2 s        | 0 s        | 2 s        | 5 s        | 3 s        | 12 s       | 2 s        | 35 s       | 57 s        | 11.8 s  |
-| 71      | 0 s        | 0 s        | 1 s        | 20 s       | 0 s        | 1 s        | 0 s        | 37 s       | 0 s        | 23 s        | 8.2 s   |
-| 72      | 0 s        | 18 s       | 2 s        | 1 s        | 2 s        | 8 s        | 3 s        | 1 s        | 2 s        | 5 s         | 4.2 s   |
-| 73      | 0 s        | 20 s       | 16 s       | 5 s        | 6 s        | 0 s        | 18 s       | 1 s        | 5 s        | 2 s         | 7.3 s   |
-| 74      | 0 s        | 29 s       | 12 s       | 3 s        | 11 s       | 3 s        | 2 s        | 6 s        | 0 s        | 3 s         | 6.9 s   |
-| 75      | 0 s        | 17 s       | 25 s       | 3 s        | 12 s       | 17 s       | 2 s        | 3 s        | 10 s       | 3 s         | 9.2 s   |
-| 76      | 0 s        | 10 s       | 6 s        | 3 s        | 2 s        | 1 s        | 7 s        | 3 s        | 18 s       | 4 s         | 5.4 s   |
-| 77      | 0 s        | 121 s      | 193 s      | 3 s        | 4 s        | 2 s        | 15 s       | 3 s        | 3 s        | 2 s         | 34.6 s  |
+| Tamanho | Execução 1 | Execução 2 | Execução 3 | Execução 4 | Execução 5 | Execução 6 | Execução 7 | Execução 8 | Execução 9 | Execução 10 | Média  |
+|---------|------------|------------|------------|------------|------------|------------|------------|------------|------------|-------------|--------|
+| 10      | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0.0 s  |
+| 70      | 1 s        | 3 s        | 1 s        | 28 s       | 4 s        | 1 s        | 1 s        | 2 s        | 3 s        | 2 s         | 4.6 s  |
+| 71      | 0 s        | 3 s        | 1 s        | 26 s       | 2 s        | 8 s        | 4 s        | 2 s        | 1 s        | 1 s         | 4.8 s  |
+| 72      | 4 s        | 3 s        | 6 s        | 4 s        | 1 s        | 0 s        | 2 s        | 1 s        | 1 s        | 8 s         | 3.0 s  |
+| 73      | 6 s        | 26 s       | 73 s       | 9 s        | 2 s        | 1 s        | 1 s        | 9 s        | 9 s        | 2 s         | 13.8 s |
+| 74      | 65 s       | 4 s        | 20 s       | 6 s        | 25 s       | 0 s        | 0 s        | 6 s        | 11 s       | 17 s        | 15.4 s |
+| 75      | 3 s        | 7 s        | 1 s        | 11 s       | 15 s       | 11 s       | 9 s        | 12 s       | 1 s        | 3 s         | 7.3 s  |
+| 76      | 1 s        | 30 s       | 0 s        | 18 s       | 4 s        | 2 s        | 2 s        | 469 s      | 0 s        | 295 s       | 82.1 s |
+
+**Resultado da Execução 76**
+
+**Resultado 1**
+
+- **Duração:** 1976839000
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 5156.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L63
+    - Empresa L31
+    - Empresa L3
+    - Empresa L42
+    - Empresa L22
+    - Empresa L4
+    - Empresa L70
+    - Empresa L8
+    - Empresa L61
+    - Empresa L67
+    - Empresa L71
+    - Empresa L24
+
+**Resultado 2**
+
+- **Duração:** 30566570100
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 6234.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L43
+    - Empresa L4
+    - Empresa L12
+    - Empresa L33
+    - Empresa L61
+    - Empresa L8
+    - Empresa L9
+    - Empresa L45
+    - Empresa L49
+    - Empresa L42
+    - Empresa L74
+    - Empresa L10
+    - Empresa L60
+    - Empresa L22
+    - Empresa L59
+    - Empresa L32
+
+**Resultado 3**
+
+- **Duração:** 436243500
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 4780.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L36
+    - Empresa L4
+    - Empresa L20
+    - Empresa L49
+    - Empresa L72
+    - Empresa L23
+    - Empresa L68
+    - Empresa L62
+    - Empresa L55
+    - Empresa L22
+    - Empresa L46
+
+**Resultado 4**
+
+- **Duração:** 18441967400
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 5605.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L60
+    - Empresa L73
+    - Empresa L20
+    - Empresa L14
+    - Empresa L49
+    - Empresa L2
+    - Empresa L45
+    - Empresa L31
+    - Empresa L40
+    - Empresa L34
+    - Empresa L27
+    - Empresa L21
+
+**Resultado 5**
+
+- **Duração:** 4035471700
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 5418.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L31
+    - Empresa L58
+    - Empresa L49
+    - Empresa L1
+    - Empresa L30
+    - Empresa L40
+    - Empresa L26
+    - Empresa L68
+    - Empresa L17
+    - Empresa L61
+    - Empresa L34
+    - Empresa L65
+    - Empresa L62
+
+**Resultado 6**
+
+- **Duração:** 2584133300
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 4772.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L23
+    - Empresa L30
+    - Empresa L20
+    - Empresa L34
+    - Empresa L60
+    - Empresa L38
+    - Empresa L48
+    - Empresa L69
+    - Empresa L68
+    - Empresa L12
+    - Empresa L16
+    - Empresa L57
+    - Empresa L11
+    - Empresa L3
+
+**Resultado 7**
+
+- **Duração:** 2344055100
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 5284.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L74
+    - Empresa L7
+    - Empresa L50
+    - Empresa L36
+    - Empresa L72
+    - Empresa L27
+    - Empresa L70
+    - Empresa L38
+    - Empresa L30
+    - Empresa L39
+    - Empresa L52
+    - Empresa L48
+    - Empresa L8
+
+**Resultado 8**
+
+- **Duração:** 469728922200
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 7983.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L35
+    - Empresa L54
+    - Empresa L18
+    - Empresa L22
+    - Empresa L58
+    - Empresa L14
+    - Empresa L61
+    - Empresa L51
+    - Empresa L74
+    - Empresa L41
+    - Empresa L29
+    - Empresa L60
+    - Empresa L16
+    - Empresa L62
+    - Empresa L76
+    - Empresa L67
+    - Empresa L21
+    - Empresa L44
+
+**Resultado 9**
+
+- **Duração:** 799764700
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 5564.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L39
+    - Empresa L28
+    - Empresa L57
+    - Empresa L51
+    - Empresa L37
+    - Empresa L21
+    - Empresa L36
+    - Empresa L71
+    - Empresa L14
+    - Empresa L8
+    - Empresa L70
+    - Empresa L50
+    - Empresa L24
+
+**Resultado 10**
+
+- **Duração:** 295182890400
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 7707.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L37
+    - Empresa L5
+    - Empresa L18
+    - Empresa L54
+    - Empresa L26
+    - Empresa L29
+    - Empresa L66
+    - Empresa L58
+    - Empresa L45
+    - Empresa L16
+    - Empresa L3
+    - Empresa L4
+    - Empresa L17
+    - Empresa L40
+    - Empresa L50
+    - Empresa L52
+    - Empresa L61
+    - Empresa L62
+    - Empresa L46
+    - Empresa L55
 
 **Observações:**
 - O algoritmo apresentou uma variabilidade significativa no tempo de execução, especialmente para tamanhos maiores de entrada.
