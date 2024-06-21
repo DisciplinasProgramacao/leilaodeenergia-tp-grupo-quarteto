@@ -4,9 +4,9 @@ import com.pucminas.fpaa.dtos.ResultadoDTO;
 import com.pucminas.fpaa.entity.EmpresaInteressada;
 import com.pucminas.fpaa.entity.EmpresaVendedora;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
+import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyValorTotalI;
 import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
 import com.pucminas.fpaa.repositories.EmpresaVendedoraRepository;
-import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyI;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,18 +14,18 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class LeilaoSolverGreedy implements LeilaoSolverGreedyI {
+public class LeilaoSolverGreedyValorTotal implements LeilaoSolverGreedyValorTotalI {
 
     private final EmpresaVendedoraRepository empresaVendedoraRepository;
     private final EmpresaInteressadaRepository empresaInteressadaRepository;
 
-    public LeilaoSolverGreedy(EmpresaVendedoraRepository empresaVendedoraRepository, EmpresaInteressadaRepository empresaInteressadaRepository) {
+    public LeilaoSolverGreedyValorTotal(EmpresaVendedoraRepository empresaVendedoraRepository, EmpresaInteressadaRepository empresaInteressadaRepository) {
         this.empresaVendedoraRepository = empresaVendedoraRepository;
         this.empresaInteressadaRepository = empresaInteressadaRepository;
     }
 
     @Override
-    public ResultadoDTO resolverLeilaoGreedy(Long idEmpresa) {
+    public ResultadoDTO resolverLeilaoSolverGreedyValorTotalI(Long idEmpresa) {
         ResultadoDTO resultadoDTO = new ResultadoDTO();
         EmpresaVendedora empresaVendedora = empresaVendedoraRepository.findById(idEmpresa).orElse(null);
 
@@ -38,7 +38,7 @@ public class LeilaoSolverGreedy implements LeilaoSolverGreedyI {
 
             resultadoDTO.iniciarContagem();
 
-            empresasInteressadas.sort(Comparator.comparingDouble(e -> -e.getValor() / e.getQuantRequerida()));
+            empresasInteressadas.sort(Comparator.comparingDouble(e -> -e.getValor()));
 
             for (EmpresaInteressada empresa : empresasInteressadas) {
                 if (empresa.getQuantRequerida() <= quantidadeDisponivel) {
@@ -52,7 +52,7 @@ public class LeilaoSolverGreedy implements LeilaoSolverGreedyI {
             resultadoDTO.setMelhorSelecao(melhorSelecao);
             resultadoDTO.setMelhorLucro(melhorLucro);
             resultadoDTO.setQuantidadeVendida(melhorSelecao.stream().mapToInt(EmpresaInteressada::getQuantRequerida).sum());
-            resultadoDTO.setAlgoritmoUtilizado(AlgoritmoEnum.GREEDY);
+            resultadoDTO.setAlgoritmoUtilizado(AlgoritmoEnum.GREEDY1);
         }
 
         return resultadoDTO;
