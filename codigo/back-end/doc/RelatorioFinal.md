@@ -861,15 +861,16 @@ No caso do problema apresentado, a solução implementada roda o algoritmo recur
 
 Para analisar a performance do algoritmo de Divisão e Conquista, foram realizados testes com os conjuntos encontrados no Backtraking, com empresas de tamanho 10 a 76 como mostrado abaixo. 
 
-Tamanho	Execução 1	Execução 2	Execução 3 	Execução 4	Execução 5	Execução 6	Execução 7	Execução 8	Execução 9	Execução 10
-10	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
-70	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
-71	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
-72	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
-73	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
-74	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
-75	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
-76	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s	        0 s
+| Tamanho | Execução 1 | Execução 2 | Execução 3 | Execução 4 | Execução 5 | Execução 6 | Execução 7 | Execução 8 | Execução 9 | Execução 10 | Média  |
+|---------|------------|------------|------------|------------|------------|------------|------------|------------|------------|-------------|--------|
+| 10      | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 70     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 71     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 72     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 73     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 74     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 75     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 76     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
 
 Como citado anterioemente, da forma como o algoritmo foi implementado, se trona eficiente (frente aos testes realizados) pois irá fazer um quantidade de operações semelhante para leilões com valores de energia disponiveis iguais (Como o caso acima onde o valor de energia total considerado para todas as execuções foi de 1000), caso desconsiderarmos o "strem().filter(...).max(...)" e a "poda" realizada que limita a divisão do valores de energia disponivel quando ele está proxima da menor quantidade requerida dentre as empresas interessadas (ou sejan quando a proxima divisão será menor que a menor quantidade requerida dentre as empresas interessadas, rele retorna).
 Podemos dizer então, que o tempo de execução do algoritmo almenta significamente com o almento da quantidade de energia disponível, e não com as empresas interessadas. Por exemplo, quanto o algoritmo foi exposto a uma quantidade de energia que se aproximava de 9 milhoe, ele teve o tempo consideravelmente almentado.
@@ -1115,4 +1116,285 @@ O algoritmo não se mostrou tão preciso quanto o backtraking, juntamente pela s
 
 ### Conclusão
 
-O algoritmo de Divisão e Conquista implementado é eficaz no tempo de resposta para o conjunto estudado do problema de seleção de empresas interessadas. No entanto, a precisão no resultado se torna um desafio devido as suas caracteristicas de troca. Em relação ao tempo de execução, sua execução varia quando almentamos a quantidade de enegia disponível, devida a abordagem da recursividade.
+O algoritmo de Divisão e Conquista implementado é eficaz no tempo de resposta para o conjunto estudado do problema de seleção de empresas interessadas. No entanto, a precisão no resultado se torna um desafio devido as suas caracteristicas de troca. Em relação ao tempo de execução, sua execução varia quando almentamos a quantidade de enegia disponível, devido a abordagem da recursividade.
+
+#### V. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
+
+**Algoritmo Implementado: Programação Dinâmica**
+
+O método de Programação Dinâmica desenvolvido para abordar o desafio da seleção de empresas interessadas, utiliza a estratégia de construir uma tabela com as informação das empresas interessadas vs quantidade Disponível para maximizar o lucru obtido.
+Para o problema apresentado, a solução implementada monta uma tabela onde as linhas são as empresas interessadas e as colunas são a quantidade de energia disponível para aquela coluna, e as células é o lucro obtido (dado a relação empresa vs valor disponível na coluna), durante a inserção das empresas interessadas. Para cadas empresa existe ele valida se a proposta dessa empresa é melhor que a empresa anterio para aquela quantidade disponível, se for ela é inserida, caso não for é mantido a empresa da linha anterior. Após a montagem da tabela o algoritmo percorre a tabela partindo da ultima posição para buscar as empresas inseridas.
+
+**Decisões Tomadas:**
+
+1. **Escolha do Algoritmo:**
+   O algoritmo de Programação Dinâmica foi escolhido devido à sua capacidade de montar uma tabela com todos os resultado possivel, isso permite que o objetivo de encontrar a melhor seleção de empresas que comprem os produtos de uma empresa vendedora seja mais efetiva para maximizar o lucro sem ultrapassar a quantidade disponível.
+
+2. **Estrutura do Algoritmo:**
+   O algoritmo realiza doi lopes um dentro do outro para montar a tabela, um para percorrer as empresas, e outra para passar pelas quantidades disponíveis que vai de 0 até a quantidade disponível. dessa forma são feita as comparações necessárias para informar se a empresa irá entrar ou não (Essa comparação consiste em comparar o valor que irá entrar + a celula na porsição (coluna atual - a linha atual) da linha anterio), esse valor é comparado co o da coluna atual e linha anterior, caso, seja melhor ele entra, caso não persiste o anterior. Após a montagem da tabela, é feito um loop para percorrer a tabela partindo do final, para buscar as empresas inseridas.
+
+3. **Condições de Parada:**
+   O algoritmo para quando a tabela é preenchida totalmente, já que o resultado fica na ultima celula da tabela.
+
+**Funcionamento do Algoritmo:**
+
+1. **Execução do Algoritmo:**
+   - O algoritmo inicializa a tabela com o tamanho da lista de empresas de interessados mais 1 na linha e o valor disponível mais um na coluna, partindo do principel que a tabela vá de 1 até n e não de 0 até n-1; 
+   - Para cada empresa ele compara se ela pode ser inserida ou não, caso sim ele altera o valor na celula, caso não ele insere o valor da linha anterior.
+   - Após a criação da tabela é feito um loop para encontrar as empresas interessadas inseridas.
+
+3. **Resultado:**
+   - O resultado contém a melhor seleção de empresas, o melhor lucro, a quantidade vendida e o algoritmo utilizado.
+
+#### II. Comparação de Resultados Obtidos pelas Implementações
+
+**Tempo de Execução e Qualidade do Resultado:**
+
+Para analisar a performance do algoritmo de Programação dinâmica, foram realizados testes com o conjunto T (76) encontrado no Backtraking, e incrementando de T em T até 10 T . 
+| Tamanho | Execução 1 | Execução 2 | Execução 3 | Execução 4 | Execução 5 | Execução 6 | Execução 7 | Execução 8 | Execução 9 | Execução 10 | Média  |
+|---------|------------|------------|------------|------------|------------|------------|------------|------------|------------|-------------|--------|
+| 76      | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 152     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 228     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 304     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 380     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 456     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 532     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 608     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 684     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+| 760     | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0 s    |
+
+**Resultado da Execução 76**
+
+**Resultado 1**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 5576.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L75
+    - Empresa L72
+    - Empresa L61
+    - Empresa L49
+    - Empresa L47
+    - Empresa L41
+    - Empresa L40
+    - Empresa L37
+    - Empresa L26
+    - Empresa L24
+    - Empresa L15
+    - Empresa L14
+    - Empresa L4
+
+**Resultado 2**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 7504.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L70
+    - Empresa L67
+    - Empresa L65
+    - Empresa L64
+    - Empresa L63
+    - Empresa L57
+    - Empresa L56
+    - Empresa L48
+    - Empresa L45
+    - Empresa L31
+    - Empresa L24
+    - Empresa L22
+    - Empresa L13
+    - Empresa L5
+    - Empresa L4
+    - Empresa L2
+
+**Resultado 3**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 5290.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L64
+    - Empresa L58
+    - Empresa L48
+    - Empresa L40
+    - Empresa L32
+    - Empresa L30
+    - Empresa L28
+    - Empresa L26
+    - Empresa L19
+    - Empresa L13
+    - Empresa L5
+    - Empresa L4
+    - Empresa L1
+
+**Resultado 4**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 5108.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L74
+    - Empresa L72
+    - Empresa L71
+    - Empresa L70
+    - Empresa L48
+    - Empresa L47
+    - Empresa L42
+    - Empresa L30
+    - Empresa L26
+    - Empresa L20
+    - Empresa L11
+    - Empresa L6
+    - Empresa L1
+
+**Resultado 5**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 4112.0
+- **Quantidade Vendida:** 980
+- **Melhor Seleção:**
+    - Empresa L75
+    - Empresa L67
+    - Empresa L66
+    - Empresa L62
+    - Empresa L50
+    - Empresa L43
+    - Empresa L41
+    - Empresa L38
+    - Empresa L36
+    - Empresa L26
+    - Empresa L6
+    - Empresa L4
+
+**Resultado 6**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 5724.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L61
+    - Empresa L60
+    - Empresa L57
+    - Empresa L56
+    - Empresa L55
+    - Empresa L51
+    - Empresa L46
+    - Empresa L45
+    - Empresa L42
+    - Empresa L41
+    - Empresa L40
+    - Empresa L39
+    - Empresa L28
+    - Empresa L27
+    - Empresa L26
+    - Empresa L10
+    - Empresa L1
+
+**Resultado 7**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 6214.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L76
+    - Empresa L75
+    - Empresa L73
+    - Empresa L72
+    - Empresa L66
+    - Empresa L64
+    - Empresa L47
+    - Empresa L44
+    - Empresa L42
+    - Empresa L39
+    - Empresa L29
+    - Empresa L26
+    - Empresa L21
+    - Empresa L20
+    - Empresa L19
+
+**Resultado 8**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 5030.0
+- **Quantidade Vendida:** 980
+- **Melhor Seleção:**
+    - Empresa L75
+    - Empresa L74
+    - Empresa L72
+    - Empresa L58
+    - Empresa L56
+    - Empresa L51
+    - Empresa L35
+    - Empresa L30
+    - Empresa L25
+    - Empresa L15
+    - Empresa L12
+    - Empresa L3
+    - Empresa L2
+    - Empresa L1
+
+**Resultado 9**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 4259.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L73
+    - Empresa L69
+    - Empresa L66
+    - Empresa L60
+    - Empresa L47
+    - Empresa L29
+    - Empresa L21
+    - Empresa L17
+    - Empresa L14
+    - Empresa L4
+
+**Resultado 10**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** Programação Dinâmica
+- **Melhor Lucro:** 5969.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L75
+    - Empresa L70
+    - Empresa L65
+    - Empresa L64
+    - Empresa L51
+    - Empresa L50
+    - Empresa L45
+    - Empresa L43
+    - Empresa L42
+    - Empresa L29
+    - Empresa L12
+    - Empresa L3
+    - Empresa L2
+    - Empresa L1
+
+
+**Observações:**
+- O algoritmo apresentou uma tempo de execução bem proximoa a zero com os valores testados, como pedemos ver no resultado, e seu algoritmo grante a precisão no resultado para maximizar o lucro do nosso leilão, por isso, frente aos testes realizados, pode ser uma ótima opção para maximizar o lucro do leilão de energia.
+
+**Análise dos Resultados:**
+
+- **Desempenho em Tamanhos:**
+- para os testes realizados o algoritmo apresentou um tempo bem proximo de zero, melhorando um problema que apareceu no backtraking por exemplo.
+
+- **Resultado:**
+O algoritmo apresentou resultado coerente, bem próximo do ótimo, fazendo um comparativos seu resultado se assemelha aos resultados do backtraking porem em um tempo muito menos de execução.
+
+### Conclusão
+
+O algoritmo de Programação Dinâmica implementado é eficaz no tempo de resposta e tem alta precisão no seu resultado (dado o teste ralizado), por isso, é um bom algoritimo a ser utilizado, porém a um ponto a se ressaltar, da forma como foi implementado nesse trabalho, podemos dizer que é um algoritmo exponêncial (n^2+n), dessa forma deve-se ter precauções frente a entrada de dados muito grande, pois o algoritmo pode começar a escalornar o tempo de resposta.
