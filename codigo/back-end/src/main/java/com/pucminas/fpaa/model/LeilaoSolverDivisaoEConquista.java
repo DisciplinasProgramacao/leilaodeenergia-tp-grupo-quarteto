@@ -40,7 +40,11 @@ public class LeilaoSolverDivisaoEConquista implements LeilaoSolverDivisaoEConqui
 
     private List<EmpresaInteressada> resolverLeilaoDivisaoEConquista(List<EmpresaInteressada> empresasInteressadas, int quantidadeEnergiaDisponivel){
         List<EmpresaInteressada> empresasSelecionadas = new ArrayList<>();
-        int valorInicial = empresasInteressadas.stream().min(Comparator.comparing(EmpresaInteressada::getQuantRequerida)).orElse(null).getQuantRequerida();
+        EmpresaInteressada empresa = empresasInteressadas.stream().min(Comparator.comparing(EmpresaInteressada::getQuantRequerida)).orElse(null);
+        int valorInicial = 0;
+        if(empresa !=null){
+            valorInicial = empresa.getQuantRequerida();
+        }
         if(quantidadeEnergiaDisponivel/2 <= valorInicial){
             EmpresaInteressada empresaSelecionada =  empresasInteressadas.stream().filter(e -> e.getQuantRequerida() <= quantidadeEnergiaDisponivel)
                     .max(Comparator.comparing(EmpresaInteressada::getValor)).orElse(null);
