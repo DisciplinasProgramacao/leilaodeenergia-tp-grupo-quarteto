@@ -82,7 +82,7 @@ public class BacktrackingTest {
                                     .quant_disponivel(1000)
                                     .build()
                     ).build();
-            //System.out.print(empresaInteressada.getQuantRequerida()+" - ");
+            System.out.print(empresaInteressada.getQuantRequerida()+" - ");
             empresaInteressadaRepository.save(empresaInteressada);
         }
     }
