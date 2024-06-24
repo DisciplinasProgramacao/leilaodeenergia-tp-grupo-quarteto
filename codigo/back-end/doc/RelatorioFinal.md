@@ -1398,3 +1398,116 @@ O algoritmo apresentou resultado coerente, bem próximo do ótimo, fazendo um co
 ### Conclusão
 
 O algoritmo de Programação Dinâmica implementado é eficaz no tempo de resposta e tem alta precisão no seu resultado (dado o teste ralizado), por isso, é um bom algoritimo a ser utilizado, porém a um ponto a se ressaltar, da forma como foi implementado nesse trabalho, podemos dizer que é um algoritmo exponêncial (n^2+n), dessa forma deve-se ter precauções frente a entrada de dados muito grande, pois o algoritmo pode começar a escalornar o tempo de resposta.
+
+#### Teste Realizado 
+
+Os testes abaixo foram realizados com todos algoritmos selecionados, devido ao banco de dados utilizado não conseguitmos realizar executar a classe de testes com os mesmos dados para as 10 execuções, porêm abaixo comtém um exemplo de execução com os mesmos dados para todos os algoritmos abordados. 
+
+### Divisão e Conquista
+
+**Resultado DTO**
+
+- **Duração:** 1073000
+- **Algoritmo Utilizado:** DIVISAOECONQUISTA
+- **Melhor Lucro:** 5314.0
+- **Quantidade Vendida:** 970
+- **Melhor Seleção:**
+    - Empresa L41
+    - Empresa L72
+    - Empresa L6
+    - Empresa L4
+    - Empresa L47
+    - Empresa L40
+    - Empresa L49
+    - Empresa L14
+    - Empresa L61
+    - Empresa L24
+    - Empresa L16
+    - Empresa L15
+    - Empresa L54
+    - Empresa L44
+
+### Greedy 
+
+**Resultado DTO**
+
+- **Duração:** 760100
+- **Algoritmo Utilizado:** GREEDY
+- **Melhor Lucro:** 5485.0
+- **Quantidade Vendida:** 960
+- **Melhor Seleção:**
+    - Empresa L72
+    - Empresa L41
+    - Empresa L47
+    - Empresa L4
+    - Empresa L24
+    - Empresa L49
+    - Empresa L14
+    - Empresa L61
+    - Empresa L15
+    - Empresa L75
+    - Empresa L26
+    - Empresa L37
+    - Empresa L6
+
+### Greedy 2
+
+
+**Resultado DTO**
+
+- **Duração:** 651500
+- **Algoritmo Utilizado:** GREEDY1
+- **Melhor Lucro:** 2849.0
+- **Quantidade Vendida:** 1000
+- **Melhor Seleção:**
+    - Empresa L35
+    - Empresa L45
+    - Empresa L49
+    - Empresa L39
+    - Empresa L24
+
+### Programação Dinâmica
+
+**Resultado DTO**
+
+- **Duração:** 0
+- **Algoritmo Utilizado:** PROGRAMACAODINAMICA
+- **Melhor Lucro:** 5576.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L75
+    - Empresa L72
+    - Empresa L61
+    - Empresa L49
+    - Empresa L47
+    - Empresa L41
+    - Empresa L40
+    - Empresa L37
+    - Empresa L26
+    - Empresa L24
+    - Empresa L15
+    - Empresa L14
+    - Empresa L4
+
+### Backtraking
+
+**Resultado DTO**
+
+- **Duração:** 13986275100
+- **Algoritmo Utilizado:** BACKTRAKING
+- **Melhor Lucro:** 5576.0
+- **Quantidade Vendida:** 990
+- **Melhor Seleção:**
+    - Empresa L72
+    - Empresa L41
+    - Empresa L47
+    - Empresa L4
+    - Empresa L24
+    - Empresa L49
+    - Empresa L14
+    - Empresa L61
+    - Empresa L15
+    - Empresa L75
+    - Empresa L26
+    - Empresa L37
+    - Empresa L40
