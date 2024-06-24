@@ -3,8 +3,7 @@ package com.pucminas.fpaa.Greedy;
 import com.pucminas.fpaa.dtos.ResultadoDTO;
 import com.pucminas.fpaa.entity.EmpresaInteressada;
 import com.pucminas.fpaa.entity.EmpresaVendedora;
-import com.pucminas.fpaa.model.LeilaoSolverGreedy;
-import com.pucminas.fpaa.model.LeilaoSolverGreedyValorTotal;
+import com.pucminas.fpaa.model.LeilaoSolverGreedyUnitario;
 import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +21,10 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 @Sql(scripts = "classpath:data-test.sql")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-public class GeedyTestPorValor {
+public class GreedyTestCustoUnitario {
 
     @Autowired
-    private LeilaoSolverGreedyValorTotal leilaoSolverGreedy;
+    private LeilaoSolverGreedyUnitario leilaoSolverGreedyUnitario;
 
     @Autowired
     private EmpresaInteressadaRepository empresaInteressadaRepository;
@@ -94,7 +93,7 @@ public class GeedyTestPorValor {
         resultado.iniciarContagem();
 
         try {
-            resultado = leilaoSolverGreedy.resolverLeilaoSolverGreedyValorTotalI(empresaId);
+            resultado = leilaoSolverGreedyUnitario.resolverLeilaoGreedyUnitario(empresaId);
         } finally {
             resultado.finalizarContagem();
         }

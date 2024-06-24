@@ -4,8 +4,8 @@ import com.pucminas.fpaa.dtos.ResultadoDTO;
 /*import com.pucminas.fpaa.ìnterfaces.LeilaoSolverBacktrackI;*/
 import com.pucminas.fpaa.interfaces.LeilaoSolverBacktrackI;
 import com.pucminas.fpaa.interfaces.LeilaoSolverDivisaoEConquistaI;
-import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyI;
-import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyValorTotalI;
+import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyUnitarioI;
+import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyValorDescI;
 import com.pucminas.fpaa.interfaces.LeilaoSolverProgramacaoDinamicaI;
 
 import org.springframework.web.bind.annotation.*;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class LeilaoController {
     private final LeilaoSolverBacktrackI backtrackI;
-    private final LeilaoSolverGreedyI greedy;
-    private final LeilaoSolverGreedyValorTotalI greedyI;
+    private final LeilaoSolverGreedyUnitarioI greedy;
+    private final LeilaoSolverGreedyValorDescI greedyI;
     private final LeilaoSolverDivisaoEConquistaI divisaoEConquistaI;
     private final LeilaoSolverProgramacaoDinamicaI programacaoDinamicaI;
 
     public LeilaoController(LeilaoSolverBacktrackI backtrackI,
-                            LeilaoSolverGreedyI greedy,
-                            LeilaoSolverGreedyValorTotalI greedyI,
+                            LeilaoSolverGreedyUnitarioI greedy,
+                            LeilaoSolverGreedyValorDescI greedyI,
                             LeilaoSolverDivisaoEConquistaI divisaoEConquistaI,
                             LeilaoSolverProgramacaoDinamicaI programacaoDinamicaI) {
         this.backtrackI = backtrackI;
@@ -39,12 +39,12 @@ public class LeilaoController {
 
     @GetMapping("/greedy/{empresaId}")
     public ResultadoDTO getGreedy(@PathVariable Long empresaId) {
-        return greedy.resolverLeilaoGreedy(empresaId);
+        return greedy.resolverLeilaoGreedyUnitario(empresaId);
     }
 
     @GetMapping("/greedy1/{empresaId}")
     public ResultadoDTO getGreedy1(@PathVariable Long empresaId) {
-        return greedyI.resolverLeilaoSolverGreedyValorTotalI(empresaId);
+        return greedyI.resolverLeilaoSolverGreedyValorDescI(empresaId);
     }
 
     @GetMapping("/divisao-e-conquista/{empresaId}")
