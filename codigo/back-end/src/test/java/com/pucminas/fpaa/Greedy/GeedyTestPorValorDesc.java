@@ -1,9 +1,9 @@
-package com.pucminas.fpaa.benchmarking;
+package com.pucminas.fpaa.Greedy;
 
 import com.pucminas.fpaa.dtos.ResultadoDTO;
 import com.pucminas.fpaa.entity.EmpresaInteressada;
 import com.pucminas.fpaa.entity.EmpresaVendedora;
-import com.pucminas.fpaa.model.LeilaoSolverGreedy;
+import com.pucminas.fpaa.model.LeilaoSolverGreedyValorDesc;
 import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,42 +21,46 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 @Sql(scripts = "classpath:data-test.sql")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-public class GreedyTest {
+public class GeedyTestPorValorDesc {
 
     @Autowired
-    private LeilaoSolverGreedy greedyService;
+    private LeilaoSolverGreedyValorDesc leilaoSolverGreedy;
 
     @Autowired
     private EmpresaInteressadaRepository empresaInteressadaRepository;
     private static final int TEMPO_LIMITE_SEGUNDOS = 30;
     private static final Random RANDOM = new Random(42);
-    private static final int TAMANHO_INICIAL = 10;
-    private static final int TAMANHO_INCREMENTO = 10;
-    private static final int NUM_TESTES_POR_TAMANHO = 10;
-    private static final int TAMANHO_MAXIMO = 10 * TAMANHO_INCREMENTO;
+    private static final int TAMANHO_INICIO = 76;
 
     @Test
-    void testGreedyPerformance() {
-        for (int tamanhoAtual = TAMANHO_INICIAL; tamanhoAtual <= TAMANHO_MAXIMO; tamanhoAtual += TAMANHO_INCREMENTO) {
+    void testBacktrackingPerformance() {
+        int tamanhoAtual = TAMANHO_INICIO;
+        boolean limiteAlcancado = false;
+        List<ResultadoDTO> resultadoFinal = new ArrayList<>();
+        while (!limiteAlcancado) {
             List<Double> temposExecucao = new ArrayList<>();
 
-            for (int i = 0; i < NUM_TESTES_POR_TAMANHO; i++) {
+            for (int i = 0; i < 10; i++) {
                 limparEmpresasInteressadas();
                 adicionarEmpresasInteressadas(tamanhoAtual);
 
                 ResultadoDTO resultado = executarTeste(3L);
                 long duracaoSegundos = TimeUnit.NANOSECONDS.toSeconds(resultado.getDuracao());
                 temposExecucao.add((double) duracaoSegundos);
-
+                resultadoFinal.add(resultado);
                 System.out.println("Execução " + (i + 1) + " com tamanho " + tamanhoAtual + ": " + duracaoSegundos + " segundos");
             }
 
             double mediaDuracao = temposExecucao.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
             System.out.println("Tamanho: " + tamanhoAtual + " - Média de execução: " + mediaDuracao + " segundos");
 
-            if (mediaDuracao > TEMPO_LIMITE_SEGUNDOS) {
+            if (tamanhoAtual >= TAMANHO_INICIO*10) {
                 System.out.println("Tempo limite estourado na média com tamanho: " + tamanhoAtual);
-                break;
+                limiteAlcancado = true;
+                System.out.println(resultadoFinal);
+            } else {
+                tamanhoAtual += TAMANHO_INICIO;
+                resultadoFinal.clear();
             }
         }
     }
@@ -79,6 +83,7 @@ public class GreedyTest {
                                     .quant_disponivel(1000)
                                     .build()
                     ).build();
+            //System.out.print(empresaInteressada.getQuantRequerida()+" - ");
             empresaInteressadaRepository.save(empresaInteressada);
         }
     }
@@ -88,7 +93,7 @@ public class GreedyTest {
         resultado.iniciarContagem();
 
         try {
-            resultado = greedyService.resolverLeilaoGreedy(empresaId);
+            resultado = leilaoSolverGreedy.resolverLeilaoSolverGreedyValorDescI(empresaId);
         } finally {
             resultado.finalizarContagem();
         }

@@ -4,7 +4,7 @@ import com.pucminas.fpaa.dtos.ResultadoDTO;
 import com.pucminas.fpaa.entity.EmpresaInteressada;
 import com.pucminas.fpaa.entity.EmpresaVendedora;
 import com.pucminas.fpaa.enums.AlgoritmoEnum;
-import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyValorTotalI;
+import com.pucminas.fpaa.interfaces.LeilaoSolverGreedyValorDescI;
 import com.pucminas.fpaa.repositories.EmpresaInteressadaRepository;
 import com.pucminas.fpaa.repositories.EmpresaVendedoraRepository;
 import org.springframework.stereotype.Service;
@@ -14,18 +14,18 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class LeilaoSolverGreedyValorTotal implements LeilaoSolverGreedyValorTotalI {
+public class LeilaoSolverGreedyValorDesc implements LeilaoSolverGreedyValorDescI {
 
     private final EmpresaVendedoraRepository empresaVendedoraRepository;
     private final EmpresaInteressadaRepository empresaInteressadaRepository;
 
-    public LeilaoSolverGreedyValorTotal(EmpresaVendedoraRepository empresaVendedoraRepository, EmpresaInteressadaRepository empresaInteressadaRepository) {
+    public LeilaoSolverGreedyValorDesc(EmpresaVendedoraRepository empresaVendedoraRepository, EmpresaInteressadaRepository empresaInteressadaRepository) {
         this.empresaVendedoraRepository = empresaVendedoraRepository;
         this.empresaInteressadaRepository = empresaInteressadaRepository;
     }
 
     @Override
-    public ResultadoDTO resolverLeilaoSolverGreedyValorTotalI(Long idEmpresa) {
+    public ResultadoDTO resolverLeilaoSolverGreedyValorDescI(Long idEmpresa) {
         ResultadoDTO resultadoDTO = new ResultadoDTO();
         EmpresaVendedora empresaVendedora = empresaVendedoraRepository.findById(idEmpresa).orElse(null);
 
