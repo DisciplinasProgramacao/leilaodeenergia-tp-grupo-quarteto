@@ -1,8 +1,8 @@
 ### Relatório Técnico sobre Implementações e Comparação de Resultados
 
-#### I. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
+## I. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
 
-**Algoritmo Implementado: Backtracking**
+### Algoritmo Implementado: Backtracking
 
 O método de Backtracking desenvolvido para abordar o desafio da seleção de empresas interessadas utiliza estratégias de otimização baseadas em técnicas de poda, aprimorando a abordagem de força bruta.
 No caso do problema apresentado, a solução implementada roda o algoritmo de Backtracking para todas as combinações possíveis, buscando criar a melhor seleção de empresas. Destaca-se a importância crucial da técnica de poda no aprimoramento do processo de busca. Essa abordagem efetiva elimina caminhos desnecessários na árvore de decisão, resultando em uma significativa melhoria na eficiência do algoritmo - que é o que o diferencia de algoritmos força-bruta. Neste contexto, o nosso backtracking emprega a técnica de poda ao verificar se a inclusão de uma nova empresa não ultrapassa a quantidade disponível, e se o lucro acumulado pode ser potencialmente maior que o melhor lucro encontrado até então. Essa técnica de poda ajuda a reduzir o número de combinações a serem exploradas, aumentando a eficiência do algoritmo.
@@ -42,15 +42,11 @@ No caso do problema apresentado, a solução implementada roda o algoritmo de Ba
 
 **Tempo de Execução e Qualidade do Resultado:**
 
-Para analisar a performance do algoritmo de backtracking, foram realizados testes com diferentes tamanhos de entrada, variando de 10 a 77 empresas interessadas. Abaixo está uma tabela que resume os tempos de execução e a média de execução para cada tamanho:
+Para analisar a performance do algoritmo de backtracking, foram realizados testes com diferentes tamanhos de entrada, variando de 10 a 76 empresas interessadas. Abaixo está uma tabela que resume os tempos de execução e a média de execução para cada tamanho:
 
 | Tamanho | Execução 1 | Execução 2 | Execução 3 | Execução 4 | Execução 5 | Execução 6 | Execução 7 | Execução 8 | Execução 9 | Execução 10 | Média  |
 |---------|------------|------------|------------|------------|------------|------------|------------|------------|------------|-------------|--------|
 | 10      | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s        | 0 s         | 0.0 s  |
-| 70      | 1 s        | 3 s        | 1 s        | 28 s       | 4 s        | 1 s        | 1 s        | 2 s        | 3 s        | 2 s         | 4.6 s  |
-| 71      | 0 s        | 3 s        | 1 s        | 26 s       | 2 s        | 8 s        | 4 s        | 2 s        | 1 s        | 1 s         | 4.8 s  |
-| 72      | 4 s        | 3 s        | 6 s        | 4 s        | 1 s        | 0 s        | 2 s        | 1 s        | 1 s        | 8 s         | 3.0 s  |
-| 73      | 6 s        | 26 s       | 73 s       | 9 s        | 2 s        | 1 s        | 1 s        | 9 s        | 9 s        | 2 s         | 13.8 s |
 | 74      | 65 s       | 4 s        | 20 s       | 6 s        | 25 s       | 0 s        | 0 s        | 6 s        | 11 s       | 17 s        | 15.4 s |
 | 75      | 3 s        | 7 s        | 1 s        | 11 s       | 15 s       | 11 s       | 9 s        | 12 s       | 1 s        | 3 s         | 7.3 s  |
 | 76      | 1 s        | 30 s       | 0 s        | 18 s       | 4 s        | 2 s        | 2 s        | 469 s      | 0 s        | 295 s       | 82.1 s |
@@ -300,9 +296,9 @@ Para analisar a performance do algoritmo de backtracking, foram realizados teste
 O algoritmo de backtracking implementado é eficaz na maximização do lucro para o problema de seleção de empresas interessadas. No entanto, a eficiência temporal se torna um desafio conforme o tamanho da entrada aumenta. Para entradas maiores, a variabilidade no tempo de execução indica a necessidade de potencial otimização ou a consideração de algoritmos alternativos que possam lidar melhor com a escalabilidade.
 
 
-#### II. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
+## II. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
 
-**Algoritmo Implementado: Greedy1**
+### Algoritmo Implementado: Greedy1
 
 O método de Greedy (guloso) desenvolvido para abordar o desafio da seleção de empresas interessadas utiliza uma estratégia baseada na escolha local ótima, visando encontrar uma solução que maximize o lucro de maneira eficiente.
 
@@ -599,9 +595,9 @@ Lógica aplicada: e.getValor() / e.getQuantRequerida()
 O algoritmo guloso implementado se mostrou altamente eficaz na maximização do lucro para o problema de seleção de empresas interessadas. Sua eficiência temporal é destacável, com tempos de execução rápidos e consistentes para todos os tamanhos de entrada testados. Isso torna o algoritmo uma escolha sólida e prática para problemas de otimização que envolvem grandes volumes de dados, apresentando uma solução escalável e eficiente.
 
 
-#### III. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
+## III. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
 
-**Algoritmo Implementado: Greedy2**
+### Algoritmo Implementado: Greedy2
 
 O método de Greedy (guloso) desenvolvido para abordar o desafio da seleção de empresas interessadas utiliza uma estratégia baseada na escolha local ótima, visando encontrar uma solução que maximize o lucro de maneira eficiente.
 
@@ -825,9 +821,9 @@ O algoritmo guloso implementado não se mostrou tão eficaz na maximização dos
 
 
 
-#### IV. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
+## IV. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
 
-**Algoritmo Implementado: Divisão e Conquista**
+### Algoritmo Implementado: Divisão e Conquista
 
 O método de Divisão e Conquista desenvolvido para abordar o desafio da seleção de empresas interessadas utiliza estratégias de dividir o valor da energia disponível baseando-se em técnicas de divisão e conquista (como a abordada em sala).
 No caso do problema apresentado, a solução implementada roda o algoritmo recursivo de Divisão e Conquista dividindo o valor de energia disponivel no leilão até se aproximar da menor quantidade requerida pelas empresas interessadas. Voltando recursivamente, para cada divisão executada ele busca a empresa cuja quantidade requerida seja menor que a quantidade disponível (para aquela divisão) e o valor seja o maior dentre estas (usando strem().filter(...).max(...)), caso encontre ele insere essa emporesa, isso ocorre tanto para a direita quanto para a esquerda. Ao comparar os dois lados, o algoritimo valida se existe algum espaço disponível, e insere a empre interessada que caiba no espaço disponível, com a mesma regra citada anteriormente. Após esse processo é realizado a comparação de troca, onde é validado se existe alguma empresa cuja quantidade interessada é menor que a total disponível, e o valor é maior do que o já inserido, caso exista, ele troca o conjunto por essa determinada empresa.   
@@ -1118,9 +1114,9 @@ O algoritmo não se mostrou tão preciso quanto o backtraking, juntamente pela s
 
 O algoritmo de Divisão e Conquista implementado é eficaz no tempo de resposta para o conjunto estudado do problema de seleção de empresas interessadas. No entanto, a precisão no resultado se torna um desafio devido as suas caracteristicas de troca. Em relação ao tempo de execução, sua execução varia quando almentamos a quantidade de enegia disponível, devido a abordagem da recursividade.
 
-#### V. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
+## V. Explicações sobre as Decisões Tomadas e o Funcionamento do Algoritmo Implementado
 
-**Algoritmo Implementado: Programação Dinâmica**
+### Algoritmo Implementado: Programação Dinâmica
 
 O método de Programação Dinâmica desenvolvido para abordar o desafio da seleção de empresas interessadas, utiliza a estratégia de construir uma tabela com as informação das empresas interessadas vs quantidade Disponível para maximizar o lucru obtido.
 Para o problema apresentado, a solução implementada monta uma tabela onde as linhas são as empresas interessadas e as colunas são a quantidade de energia disponível para aquela coluna, e as células é o lucro obtido (dado a relação empresa vs valor disponível na coluna), durante a inserção das empresas interessadas. Para cadas empresa existe ele valida se a proposta dessa empresa é melhor que a empresa anterio para aquela quantidade disponível, se for ela é inserida, caso não for é mantido a empresa da linha anterior. Após a montagem da tabela o algoritmo percorre a tabela partindo da ultima posição para buscar as empresas inseridas.
@@ -1511,3 +1507,72 @@ Os testes abaixo foram realizados com todos algoritmos selecionados, devido ao b
     - Empresa L26
     - Empresa L37
     - Empresa L40
+
+## VI. Conclusão dos Resultados Encontrados nos Testes Acima
+
+### Comparativo de Complexidade
+
+- *Backtracking*:
+  - *Complexidade*: Exponencial. É o mais custoso em termos de tempo de execução, especialmente para conjuntos maiores de dados devido à sua natureza recursiva e à exploração completa de todas as combinações possíveis.
+
+- *Guloso 1 (GREEDYUNITARIO)*:
+  - *Complexidade*: O(n log n) devido à necessidade de ordenar os elementos antes de aplicar a heurística gulosa.
+
+- *Guloso 2 (GREEDYVALORDESC)*:
+  - *Complexidade*: O(n log n) similar ao GREEDYUNITARIO, com a ordenação sendo o principal fator de complexidade.
+
+- *Divisão e Conquista*:
+  - *Complexidade*: O(n log n) a O(n^2), dependendo da implementação e do problema específico. Geralmente, esta abordagem tem um desempenho intermediário.
+
+- *Programação Dinâmica*:
+  - *Complexidade*: O(n * W), onde n é o número de itens e W é a capacidade do "knapsack". É mais eficiente que o backtracking em muitos casos, especialmente para grandes conjuntos de dados, mas pode ser menos eficiente que os métodos gulosos para pequenas entradas.
+
+### Análise de Tempo de Execução
+
+- *Backtracking*:
+  - *Baixa Quantidade de Dados*: Pode ser aceitável, mas ainda assim tende a ser mais lento.
+  - *Alta Quantidade de Dados*: Extremamente lento e impraticável devido à explosão combinatória.
+  - *Qualidade dos ResultadosDTO*: Alta precisão, explorando todas as possibilidades para encontrar a solução ótima.
+
+- *Guloso 1 (GREEDYUNITARIO)* e *Guloso 2 (GREEDYVALORDESC)*:
+  - *Baixa Quantidade de Dados*: Rápidos e eficientes, fornecendo soluções rápidas.
+  - *Alta Quantidade de Dados*: Continuam sendo rápidos, mas a precisão pode diminuir se as heurísticas não forem adequadas.
+  - *Qualidade dos ResultadosDTO*: Variável, pode não encontrar a solução ótima, mas eficiente em termos de tempo.
+
+- *Divisão e Conquista*:
+  - *Baixa Quantidade de Dados*: Desempenho aceitável, mas geralmente não tão rápido quanto os métodos gulosos.
+  - *Alta Quantidade de Dados*: Pode ser mais lento que os métodos gulosos e a programação dinâmica, mas ainda viável.
+  - *Qualidade dos ResultadosDTO*: Boa precisão, mas não garantida para ser ótima.
+
+- *Programação Dinâmica*:
+  - *Baixa Quantidade de Dados*: Rápido e eficiente, similar aos métodos gulosos.
+  - *Alta Quantidade de Dados*: Permanece eficiente em termos de tempo, lidando bem com grandes entradas.
+  - *Qualidade dos ResultadosDTO*: Alta precisão, frequentemente encontra a solução ótima, equilibrando tempo e qualidade.
+
+### Resultados Baseados na Execução com 76 Empresas
+
+- *Backtracking*:
+  - *Tempo*: Muito lento, pode levar uma quantidade impraticável de tempo.
+  - *Quantidade Vendida x Lucro*: Precisão alta, melhor seleção encontrada.
+
+- *Guloso 1 e Guloso 2*:
+  - *Tempo*: Muito rápidos, eficientes em termos de tempo.
+  - *Quantidade Vendida x Lucro*: Menor precisão em comparação com backtracking e programação dinâmica, soluções subótimas possíveis.
+
+- *Divisão e Conquista*:
+  - *Tempo*: Intermediário, pode variar.
+  - *Quantidade Vendida x Lucro*: Boas soluções, mas não garantido ótimo.
+
+- *Programação Dinâmica*:
+  - *Tempo*: Bom desempenho, eficiente.
+  - *Quantidade Vendida x Lucro*: Alta precisão, frequentemente encontra a solução ótima.
+
+### Conclusão Final: Melhor Algoritmo e Por Quê
+
+Para *baixa quantidade de dados, os métodos **gulosos* são preferíveis devido à sua rapidez e eficiência. Eles fornecem soluções rapidamente, apesar de não garantirem a solução ótima.
+
+Para *alta quantidade de dados, a **programação dinâmica* é a melhor escolha. Ela oferece um bom equilíbrio entre tempo de execução e qualidade dos resultados, frequentemente encontrando a solução ótima.
+
+O *backtracking* é mais preciso, mas impraticável para grandes conjuntos de dados devido ao seu alto custo computacional. A *divisão e conquista* pode ser uma escolha intermediária, mas geralmente é menos eficiente que a programação dinâmica.
+
+*Custo-benefício: **Programação Dinâmica* é a solução mais balanceada, oferecendo boa precisão e eficiência para a maioria dos casos, especialmente com grandes quantidades de dados.

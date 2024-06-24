@@ -48,6 +48,10 @@ public class programacaoDinamica {
                 resultadoFinal.add(resultado);
                 System.out.println("Execução " + (i + 1) + " com tamanho " + tamanhoAtual + ": " + duracaoSegundos + " segundos");
             }
+            if(tamanhoAtual==TAMANHO_INICIO){
+                System.out.println(resultadoFinal);
+                break;
+            }
 
             double mediaDuracao = temposExecucao.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
             System.out.println("Tamanho: " + tamanhoAtual + " - Média de execução: " + mediaDuracao + " segundos");
@@ -81,7 +85,7 @@ public class programacaoDinamica {
                                     .quant_disponivel(1000)
                                     .build()
                     ).build();
-            //System.out.print(empresaInteressada.getQuantRequerida()+" - ");
+            System.out.print(empresaInteressada.getQuantRequerida()+" - ");
             empresaInteressadaRepository.save(empresaInteressada);
         }
     }
