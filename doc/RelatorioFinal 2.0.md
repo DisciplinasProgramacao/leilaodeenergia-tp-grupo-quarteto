@@ -1455,11 +1455,11 @@ R**esultado 10**
             
     **Recomendação**
 
-      - Para situações em que o lucro máximo é a prioridade e o tempo de execução não é um grande problema, recomenda-se o uso do algoritmo de Programação Dinâmica. Entretanto, para aplicações onde a velocidade é crítica e um bom lucro é aceitável, o algoritmo Greedy é a melhor escolha.
+      - Para situações em que o lucro máximo é a prioridade e o tempo de execução não é um grande problema, recomenda-se o uso do algoritmo de Programação Dinâmica. Entretanto, para aplicações onde a velocidade é crítica e um bom lucro é aceitável, o algoritmo Greedy ou Divisão e Conquista é a melhor escolha.
 
     **Conclusão:**
 
-     - Dependendo da prioridade (tempo vs. lucro), a escolha do algoritmo pode variar. Para maximizar o lucro em um tempo aceitável, a Programação Dinâmica é a melhor escolha. Para soluções rápidas com lucros razoáveis, os algoritmos Greedy são mais adequados.
+     - Dependendo da prioridade (tempo vs. lucro), a escolha do algoritmo pode variar. Para maximizar o lucro em um tempo aceitável, a Programação Dinâmica é a melhor escolha. Para soluções rápidas com lucros razoáveis, os algoritmos Greedy ou Divisão e Conquista ( obtendo um resultado intermediário )  são mais adequados.
 
 ### Comparativo de Complexidade
 
