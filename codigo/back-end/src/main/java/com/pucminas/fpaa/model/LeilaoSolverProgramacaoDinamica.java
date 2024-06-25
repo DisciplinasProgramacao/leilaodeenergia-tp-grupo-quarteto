@@ -28,6 +28,7 @@ public class LeilaoSolverProgramacaoDinamica implements LeilaoSolverProgramacaoD
 
         EmpresaVendedora empresaVendedora = empresaVendedoraRepository.findById(idEmpresa).orElseThrow(() -> new RuntimeException("Empresa não encontrada"));
         List<EmpresaInteressada> interessadas = empresaInteressadaRepository.findByEmpresaVendedoraId(idEmpresa);
+        ResultadoDTO resultadoDTO = new ResultadoDTO();
 
         int quantidadeTotal = empresaVendedora.getQuant_disponivel();
         int n = interessadas.size();
@@ -37,6 +38,7 @@ public class LeilaoSolverProgramacaoDinamica implements LeilaoSolverProgramacaoD
 
         // Inicializar a tabela de DP
         int[][] dp = new int[n + 1][quantidadeTotal + 1];
+        resultadoDTO.iniciarContagem();
 
         // Construir a tabela de DP
         for (int i = 1; i <= n; i++) {
@@ -59,7 +61,6 @@ public class LeilaoSolverProgramacaoDinamica implements LeilaoSolverProgramacaoD
         int quantidadeVendida = interessadasSelecionadas.stream().mapToInt(EmpresaInteressada::getQuantRequerida).sum();
         int valorTotal = dp[n][quantidadeTotal];
 
-        ResultadoDTO resultadoDTO = new ResultadoDTO();
         resultadoDTO.finalizarContagem();
         resultadoDTO.setQuantidadeVendida(quantidadeVendida);
         resultadoDTO.setMelhorLucro(valorTotal);
